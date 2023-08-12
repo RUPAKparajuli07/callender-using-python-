@@ -13,10 +13,13 @@ def show_calendar(year):
     screen_height = root.winfo_screenheight()
     calendar_window.geometry(f"{screen_width}x{screen_height}")
     
-    # create calendar label
+    # calculate font size based on screen size
+    font_size = min(screen_width, screen_height) // 80
+    
+    # create calendar label with adjusted font size
     gui_content = calendar.calendar(year)
-    cal_year = Label(calendar_window, text=gui_content, font="Consolas 10 bold", justify=LEFT)
-    cal_year.pack(padx=20, pady=20)
+    cal_year = Label(calendar_window, text=gui_content, font=f"Consolas {font_size} bold", justify=LEFT)
+    cal_year.pack(padx=20, pady=20, fill=BOTH, expand=True)
 
 def get_year():
     year = int(year_field.get())
